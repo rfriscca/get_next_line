@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 13:45:26 by rfriscca          #+#    #+#             */
-/*   Updated: 2015/12/30 16:06:00 by rfriscca         ###   ########.fr       */
+/*   Created: 2015/12/30 14:04:08 by rfriscca          #+#    #+#             */
+/*   Updated: 2015/12/30 14:09:38 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-int		get_next_line(int const fd, char **line)
-{
-	static char		*buf = (char*)malloc(sizeof(*buf) * BUF_SIZE + 1);
-	static int		end = 0;
+# define BUF_SIZE 32
 
-	if (*buf == '\0')
-	{
-		end = read(fd, buf, BUF_SIZE);
-		buf[end] = '\0';
-	}
-}
+# include <sys/types.h>
+# include <sys/uio.h>
+# include <unistd.h>
+# include <stdlib.h>
+
+#endif
