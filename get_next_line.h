@@ -6,7 +6,7 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 14:04:08 by rfriscca          #+#    #+#             */
-/*   Updated: 2015/12/30 14:09:38 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/01/05 15:57:44 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,13 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef struct		s_buf
+{
+	char			*buf;
+	int				fd;
+	int				i;
+	int				size;
+}					t_buf;
 
 #endif
