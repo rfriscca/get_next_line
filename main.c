@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/12/30 14:04:08 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/08 14:52:08 by rfriscca         ###   ########.fr       */
+/*   Created: 2016/01/08 14:28:42 by rfriscca          #+#    #+#             */
+/*   Updated: 2016/01/08 17:29:32 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "get_next_line.h"
+#include <fcntl.h>
 
-# define BUF_SIZE 32
+int		get_next_line(const int fd, char **line);
 
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <unistd.h>
-# include <stdlib.h>
-# include "libft/libft.h"
-
-int					get_next_line(const int fd, char **line);
-
-typedef struct		s_buf
+int		main(int argc, char **argv)
 {
-	char			*buf;
-	int				fd;
-	int				i;
-	int				size;
-}					t_buf;
+	int		fd;
+	char	*line;
 
-#endif
+	fd = open(argv[1], O_RDONLY);
+	while (get_next_line(fd, &line))
+	{
+		ft_putstr(line);
+	}
+	return (0);
+}
