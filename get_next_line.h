@@ -6,14 +6,14 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 14:04:08 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/08 14:52:08 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/01/09 12:41:27 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-# define BUF_SIZE 32
+# define BUF_SIZE 5
 
 # include <sys/types.h>
 # include <sys/uio.h>

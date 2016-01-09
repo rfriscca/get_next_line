@@ -6,12 +6,13 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 14:28:42 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/08 17:29:32 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/01/09 12:48:29 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 #include <fcntl.h>
+#include <stdio.h>
 
 int		get_next_line(const int fd, char **line);
 
@@ -24,6 +25,8 @@ int		main(int argc, char **argv)
 	while (get_next_line(fd, &line))
 	{
 		ft_putstr(line);
+		ft_bzero(line, ft_strlen(line));
+		ft_putchar('\n');
 	}
 	return (0);
 }
