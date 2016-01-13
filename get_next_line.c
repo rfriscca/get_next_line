@@ -6,7 +6,7 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/12/30 13:45:26 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/13 16:39:07 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/01/13 17:14:18 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,21 @@ t_buf	first_alloc(t_buf buf)
 	return (buf);
 }
 
+int		last_check(t_buf buf, char **line, int flag)
+{
+	if ((buf.buf[buf.i] == '\n' && buf.i == 0))
+		read_line(buf, line);
+	if (buf.size != 0)
+		return (1);
+	if (flag == 0)
+	{
+		read_line(buf, line);
+		flag = 1;
+		return (1);
+	}
+	return (0);
+}
+
 int		get_next_line(int const fd, char **line)
 {
 	static t_buf	buf;
@@ -83,17 +98,9 @@ int		get_next_line(int const fd, char **line)
 		if (buf.i == -1)
 			return (-1);
 	}
-	if ((buf.buf[buf.i] == '\n' && buf.i == 0))
-		read_line(buf, line);
 	if (buf.buf[buf.i] == '\n')
 		++buf.i;
-	if (buf.size != 0)
+	if (last_check(buf, line, flag))
 		return (1);
-	if (flag == 0)
-	{
-		read_line(buf, line);
-		flag = 1;
-		return (1);
-	}
 	return (0);
 }
