@@ -6,7 +6,7 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 12:28:58 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/19 13:54:03 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/01/19 15:48:25 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,8 @@ int		get_next_line(int const fd, char **line)
 	if (!line)
 		return (-1);
 	buf = ft_realloc(fd, buf);
-	if (buf.i == -1)
-		return (-1);
-	if ((save = ft_strnew(BUF_SIZE)) == NULL)
-		return (-1);
-	if ((*line = ft_strnew(0)) == NULL)
+	if (buf.i == -1 || (save = ft_strnew(BUF_SIZE)) == NULL ||
+			(*line = ft_strnew(0)) == NULL)
 		return (-1);
 	while (buf.size)
 	{
