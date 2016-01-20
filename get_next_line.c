@@ -6,7 +6,7 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 12:28:58 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/20 12:55:27 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/01/20 13:31:26 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,21 @@ t_buf	ft_realloc(int const fd, t_buf buf)
 	return (buf);
 }
 
-int		get_next_line(int const fd, char **line)
+int		read_line(char **line, t_buf buf)
 {
-	static t_buf	buf;
-	int				i;
-	char			*save;
+	int		i;
+	char	*save;
 
 	i = 0;
-	if (!line)
+	if ((save = ft_strnew(BUF_SIZE)) == NULL)
 		return (-1);
-	buf = ft_realloc(fd, buf);
-	if (buf.i == -1 || (save = ft_strnew(BUF_SIZE)) == NULL ||
-			(*line = ft_strnew(0)) == NULL)
-		return (-1);
-	while (buf.size)
+	while (buf.i < buf.size)
 	{
 		if (buf.buf[buf.i] == '\n')
 		{
 			*line = ft_strjoin(*line, save);
 			free(save);
-			++buf.i;
-			return (1);
+			return (buf.i);
 		}
 		save[i] = buf.buf[buf.i];
 		++i;
@@ -54,12 +48,35 @@ int		get_next_line(int const fd, char **line)
 		if (buf.i == buf.size)
 		{
 			*line = ft_strjoin(*line, save);
-			ft_bzero(save, BUF_SIZE);
-			i = 0;
+			free(save);
+			return (buf.i);
 		}
+	}
+	return (buf.i);
+}
+
+int		get_next_line(int const fd, char **line)
+{
+	static t_buf	buf;
+
+	if (!line)
+		return (-1);
+	buf = ft_realloc(fd, buf);
+	if (buf.i == -1 || (*line = ft_strnew(0)) == NULL)
+		return (-1);
+	while (buf.size)
+	{
+		if (buf.buf[buf.i] == '\n')
+		{
+			++buf.i;
+			return (1);
+		}
+		buf.i = read_line(line, buf);
 		buf = ft_realloc(fd, buf);
 		if (buf.i == -1)
 			return (-1);
 	}
+	if (**line)
+		return (1);
 	return (0);
 }
