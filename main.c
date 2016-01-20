@@ -6,7 +6,7 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 14:28:42 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/19 15:18:28 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/01/20 12:52:13 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ int		main(int argc, char **argv)
 
 	if (argc == 2)
 		fd = open(argv[1], O_RDONLY);
-	if (get_next_line(2, &line) == -1)
-		ft_putstr("error\n");
-	while (get_next_line(3, &line) > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
 		ft_putstr(line);
 		ft_bzero(line, ft_strlen(line));
