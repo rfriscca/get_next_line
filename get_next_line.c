@@ -6,7 +6,7 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/19 12:28:58 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/01/20 13:31:26 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/10/07 15:33:51 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int		read_line(char **line, t_buf buf)
 	{
 		if (buf.buf[buf.i] == '\n')
 		{
-			*line = ft_strjoin(*line, save);
-			free(save);
+			*line = ft_strjoingnl(*line, save);
 			return (buf.i);
 		}
 		save[i] = buf.buf[buf.i];
@@ -47,8 +46,7 @@ int		read_line(char **line, t_buf buf)
 		++buf.i;
 		if (buf.i == buf.size)
 		{
-			*line = ft_strjoin(*line, save);
-			free(save);
+			*line = ft_strjoingnl(*line, save);
 			return (buf.i);
 		}
 	}

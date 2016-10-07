@@ -1,35 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/08 14:28:42 by rfriscca          #+#    #+#             */
-/*   Updated: 2016/10/07 15:36:10 by rfriscca         ###   ########.fr       */
+/*   Created: 2015/11/25 17:53:06 by rfriscca          #+#    #+#             */
+/*   Updated: 2016/10/07 15:17:41 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
+#include "libft.h"
 
-int		get_next_line(const int fd, char **line);
-
-int		main(int argc, char **argv)
+char	*ft_strjoingnl(char *s1, char *s2)
 {
-	int		fd;
-	char	*line;
+	unsigned int	i;
+	unsigned int	len;
+	char			*str;
 
-	if (argc == 2)
-		fd = open(argv[1], O_RDONLY);
-	while (get_next_line(fd, &line) > 0)
+	len = ft_strlen(s1) + ft_strlen(s2);
+	i = 0;
+	if ((str = ft_strnew(len)) == NULL)
+		return (NULL);
+	while (s1[i])
 	{
-		ft_putstr(line);
-		ft_bzero(line, ft_strlen(line));
-		ft_putchar('\n');
-		free(line);
+		str[i] = s1[i];
+		i++;
 	}
-	while (1);
-	return (0);
+	len = i;
+	i = 0;
+	while (s2[i])
+	{
+		str[len + i] = s2[i];
+		i++;
+	}
+	free(s1);
+	free(s2);
+	return (str);
 }

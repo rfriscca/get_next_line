@@ -6,7 +6,7 @@
 /*   By: rfriscca <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/27 16:14:57 by rfriscca          #+#    #+#             */
-/*   Updated: 2015/12/15 16:48:42 by rfriscca         ###   ########.fr       */
+/*   Updated: 2016/10/07 15:19:47 by rfriscca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+char				*ft_strjoingnl(char *s1, char *s2);
 char				*ft_strnew(size_t size);
 int					ft_atoi(const char *str);
 void				ft_bzero(void *s, size_t n);
